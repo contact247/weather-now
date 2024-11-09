@@ -27,7 +27,6 @@ Before you begin, ensure you have the following installed on your local machine:
 ## Installation
 
 1. Clone the repository:
-
    ```
    git clone https://github.com/your-username/weather-now.git
    cd weather-now
@@ -80,6 +79,12 @@ npm run preview
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
@@ -91,4 +96,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contact
 
-If you have any questions or feedback, please contact [Your Name](mailto:your.email@example.com).
+For any questions, feedback, or issues related to this project, please:
+
+1. Open an issue in the [GitHub repository](https://github.com/contact247/weather-now/issues).
+2. If you prefer not to use GitHub issues, you can create a pull request with your question or suggestion.
+
+We appreciate your interest in Weather Now and look forward to your contributions and feedback!
