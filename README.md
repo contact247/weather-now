@@ -28,7 +28,7 @@ Before you begin, ensure you have the following installed on your local machine:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/weather-now.git
+   git clone https://github.com/contact247/weather-now.git
    cd weather-now
    ```
 
