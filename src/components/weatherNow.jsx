@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { WiDaySunny, WiCloudy, WiRain, WiStrongWind } from 'react-icons/wi';
 
+// Styled components for the UI elements
 const AppContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -134,15 +135,19 @@ const ErrorMessage = styled.p`
 `;
 
 export default function WeatherNow() {
-  const [city, setCity] = useState('London');
-  const [weather, setWeather] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  
+  // State variables
+  const [city, setCity] = useState('London'); // Default city
+  const [weather, setWeather] = useState(null); // Weather data
+  const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(null); // Error state
 
+   // Function to fetch weather data
   const fetchWeather = async (cityName) => {
     setLoading(true);
     setError(null);
     try {
+      // First, get the coordinates for the city
       const geoResponse = await fetch(
         `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
           cityName
@@ -156,6 +161,7 @@ export default function WeatherNow() {
 
       const { latitude, longitude } = geoData.results[0];
 
+      // Then, fetch the weather data using the coordinates
       const weatherResponse = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,weathercode`
       );
@@ -172,10 +178,12 @@ export default function WeatherNow() {
     }
   };
 
+  // Fetch weather data for the default city on component mount
   useEffect(() => {
     fetchWeather(city);
   }, []);
 
+// Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (city.trim()) {
@@ -183,6 +191,7 @@ export default function WeatherNow() {
     }
   };
 
+   // Function to get the appropriate weather icon based on the weather code
   const getWeatherIcon = (weathercode) => {
     switch (true) {
       case weathercode <= 1:
@@ -196,6 +205,7 @@ export default function WeatherNow() {
     }
   };
 
+  // Function to get the weather description based on the weather code
   const getWeatherDescription = (weathercode) => {
     switch (true) {
       case weathercode <= 1:
@@ -209,6 +219,7 @@ export default function WeatherNow() {
     }
   };
 
+  // Function to convert wind direction from degrees to cardinal directions
   const getWindDirection = (degrees) => {
     const directions = [
       'N',
@@ -236,6 +247,7 @@ export default function WeatherNow() {
     <AppContainer>
       <WeatherCard>
         <Title>Weather Now</Title>
+        {/* Search form */}
         <StyledForm onSubmit={handleSubmit}>
           <StyledInput
             type="text"
@@ -248,9 +260,10 @@ export default function WeatherNow() {
             {loading ? 'Searching...' : 'Search'}
           </StyledButton>
         </StyledForm>
-
+        {/* Error message display */}
         {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
-
+        
+         {/* Weather information display */}
         {weather && (
           <WeatherInfo>
             <div>
